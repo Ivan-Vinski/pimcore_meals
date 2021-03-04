@@ -1,0 +1,15 @@
+{% if errors is defined %}
+    {% for error in errors %}
+        {{ error.message }}
+    {% endfor %}
+{% endif %}
+
+{% if meals is defined %}
+    {% for meal in meals %}
+        Meal title: {{ meal.title(lang) }}<br>
+        Status: {{ meal.status }} <br>
+        created at: {{ meal.created_at }}
+        <br><br>
+    {% endfor %}
+
+{% endif %}

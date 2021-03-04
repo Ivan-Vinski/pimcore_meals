@@ -1,0 +1,77 @@
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    # Example custom templating helper
+    # AppBundle\Templating\Helper\Example:
+    #     # templating helpers need to be public as they
+    #     # are fetched from the container on demand
+    #     public: true
+    #     tags:
+    #         - { name: templating.helper, alias: fooBar }
+
+    # Example event listener for objects
+    # AppBundle\EventListener\TestListener:
+    #     tags:
+    #         - { name: kernel.event_listener, event: pimcore.dataobject.preUpdate, method: onObjectPreUpdate }
+
+    # EVENT LISTENERS
+    AppBundle\EventListener\NewCategoryListener:
+        tags:
+            - { name: kernel.event_listener, event: pimcore.dataobject.preAdd, method: onCreation }
+
+    AppBundle\EventListener\NewTagListener:
+        tags:
+            - { name: kernel.event_listener, event: pimcore.dataobject.preAdd, method: onCreation }
+
+    AppBundle\EventListener\NewIngredientListener:
+        tags:
+            - { name: kernel.event_listener, event: pimcore.dataobject.preAdd, method: onCreation }
+
+    AppBundle\EventListener\NewMealListener:
+        tags:
+            - { name: kernel.event_listener, event: pimcore.dataobject.preAdd, method: onCreation }
+
+    # REPOSITORIES
+    AppBundle\Model\Repository\Category\CategoryRepositoryInterface:
+        class: AppBundle\Model\Repository\Category\CategoryRepository
+
+    AppBundle\Model\Repository\Tag\TagRepositoryInterface:
+        class: AppBundle\Model\Repository\Tag\TagRepository
+
+    AppBundle\Model\Repository\Ingredient\IngredientRepositoryInterface:
+        class: AppBundle\Model\Repository\Ingredient\IngredientRepository
+
+    AppBundle\Model\Repository\Meal\MealRepositoryInterface:
+        class: AppBundle\Model\Repository\Meal\MealRepository
+
+    AppBundle\Model\Transformer\Meal\MealTransformerInterface:
+        class: AppBundle\Model\Transformer\Meal\MealTransformer
+
+    AppBundle\Model\Transformer\Category\CategoryTransformerInterface:
+        class: AppBundle\Model\Transformer\Category\CategoryTransformer
+
+    AppBundle\Model\Transformer\Ingredient\IngredientTransformerInterface:
+        class: AppBundle\Model\Transformer\Ingredient\IngredientTransformer
+
+    AppBundle\Model\Transformer\Tag\TagTransformerInterface:
+        class: AppBundle\Model\Transformer\Tag\TagTransformer
+
+    # SEEDERS
+    AppBundle\Seeders\:
+        resource: ../../src/AppBundle/Seeders/*
+
+    # COMMANDS
+    AppBundle\Command\:
+        resource: '../../src/AppBundle/Command'
+        tags: [ 'console.command' ]
+
+    AppBundle\Validation\:
+        resource: ../../src/AppBundle/Validation/*

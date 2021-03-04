@@ -1,0 +1,19 @@
+DONE:
+u MealRepository ti je hint kako drugacije napravit funkciju create() - koristi setValules da nemas
+tri tisuce seter callova - done
+u CategoryRepositoryu ti je hint za dohvacanje IDova svih objekata klase - done
+tags - neces moci ovim pristupom da redas ideve - done
+validacija request parametara - done
+jos trebas diff_time resit - done
+
+
+TODO:
+default controller - with - problem lazy loading
+Transformers
+
+commitaj gore initial commit je ovo
+pa napredak s areabrickom gitaj
+
+brick neki cemo napravit:
+
+u njega mozemo tag cat
